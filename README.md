@@ -1,4 +1,6 @@
 mabs_stats
 ==========
 
-This script analyzes the seg_dice.csv mabs file and compute statistic on it.
+This repository contains a Python script to analyze the seg_dice.csv mabs file and compute statistic on it.
+MABS is a segmentation tool included in the Plastimatch project (www.plastimatch.org)
+
