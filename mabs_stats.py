@@ -3,7 +3,7 @@
 """
 This script analyzes the seg_dice.csv mabs file and compute statistic on it.
 Author: Paolo Zaffino  (p.zaffino@unicz.it)
-Rev 3
+Rev 4
 
 Usage examples:
 ./mabs_stats.py --input seg_dice.csv
@@ -39,7 +39,8 @@ seg_dice.close()
 # Make a list of all the patients
 patients=[]
 for line in raw_lines:
-    if line[0] not in patients: patients.append(line[0])
+    patient=line[0].split("=")[1] if line[0].split("=")[0] == "target" else None
+    if patient not in patients and patient is not None: patients.append(patient)
 
 # Organize the data
 data=dict()
@@ -47,7 +48,8 @@ for patient in patients:
     data[patient]=[]
 
 for line in raw_lines:
-    patient = line[0]
+    patient = line[0].split("=")[1] if line[0].split("=")[0] == "target" else None
+    if patient == None: continue
     line_dict = dict()
     for field in line[1:]:
         key, value = field.split("=")
